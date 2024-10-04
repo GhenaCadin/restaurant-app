@@ -1,0 +1,56 @@
+# Service Client
+services:
+  frontend:
+    build: ./client
+    ports:
+      - "80:80"
+    networks:
+      - client
+    environment:
+      - NODE_ENV=production  
+
+# Services Backend
+  backend_auth:
+    build: ./backend/auth
+    ports:
+      - "81:3001"
+    networks:
+      - backend
+    environment:
+      - NODE_ENV=production  
+
+  backend_discounts:
+    build: ./backend/discounts
+    ports:
+      - "82:3002"
+    networks:
+      - backend
+    environment:
+      - NODE_ENV=production  
+
+  backend_items:
+    build: ./backend/items
+    ports:
+      - "3003:3003"
+    networks:
+      - backend
+    environment:
+      - NODE_ENV=production      
+
+# HAProxy 
+  haproxy:
+    image: haproxy:latest
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - "88:88"
+    networks:
+      - client
+      - backend
+
+# Networks 
+networks:
+  client: {}
+  backend: {}
+
+  
