@@ -1,14 +1,11 @@
 [haproxy]
 12.12.12.12
+haproxy ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
 
-[frontend]
-12.12.12.12
+[client]
+client ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
 
-[services]
-12.12.12.12
-12.12.12.12
-12.12.12.12
-
-
-web1 ansible_host=54.155.237.95 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Desktop/ansible-playbooks/ansible_server_key.pem
-web2 ansible_host=34.244.64.174 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Desktop/ansible-playbooks/ansible_server_key.pem
+[backend]
+backend_items ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
+backend_discount ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
+backend_auth ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
