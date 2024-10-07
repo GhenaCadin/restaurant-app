@@ -1,0 +1,17 @@
+---
+- hosts: client
+  become: true
+  tasks:
+    - name: Pull client Docker image
+      docker_image:
+        name: client
+        source: pull
+        tag: latest
+
+    - name: Run client service on port 6002
+      docker_container:
+        name: backend-auth
+        image: your-node-service-1:latest #Change with the actuall docker image
+        ports:
+          - "6002:6002"
+        state: started

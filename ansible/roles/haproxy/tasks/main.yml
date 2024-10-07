@@ -1,0 +1,30 @@
+---
+- hosts: haproxy
+  become: true
+  tasks:
+    - name: Pull haproxy Docker image 
+      docker_image:
+        name: haproxy
+        source: pull
+        tag: latest
+
+    - name: Run haproxy service on port 80
+      docker_container:
+        name: node_service_1
+        image: your-node-service-1:latest #Change with the actuall docker image
+        ports:
+          - "80:80"
+        state: started
+
+    - name: Configure HAProxy
+      template:
+        src: haproxy.cfg.j2
+        dest: /etc/haproxy/haproxy.cfg
+        notify:
+        - Restart HAProxy
+
+  handlers:
+    - name: Restart HAProxy
+      service:
+        name: haproxy
+        state: restarted    

@@ -3,7 +3,7 @@ services:
   frontend:
     build: ./client
     ports:
-      - "80:80"
+      - "6002:6002"
     networks:
       - client
     environment:
@@ -13,7 +13,7 @@ services:
   backend_auth:
     build: ./backend/auth
     ports:
-      - "81:3001"
+      - "3001:3001"
     networks:
       - backend
     environment:
@@ -22,7 +22,7 @@ services:
   backend_discounts:
     build: ./backend/discounts
     ports:
-      - "82:3002"
+      - "3002:3002"
     networks:
       - backend
     environment:
@@ -43,7 +43,7 @@ services:
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
-      - "88:88"
+      - "80:80"
     networks:
       - client
       - backend

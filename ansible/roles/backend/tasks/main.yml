@@ -1,0 +1,45 @@
+---
+- hosts: backend
+  become: true
+  tasks:
+    - name: Pull Docker image for auth
+      docker_image:
+        name: your-node-service-1
+        source: pull
+        tag: latest
+
+    - name: Run auth service
+      docker_container:
+        name: node_service_1
+        image: your-node-service-1:latest #Change with the actuall docker image
+        ports:
+          - "3001:3001"
+        state: started
+
+    - name: Pull Docker image for discounts
+      docker_image:
+        name: your-node-service-2
+        source: pull
+        tag: latest
+
+    - name: Run discounts service
+      docker_container:
+        name: node_service_2
+        image: your-node-service-2:latest #Change with the actuall docker image
+        ports:
+          - "3002:3002"
+        state: started
+
+    - name: Pull Docker image for items
+      docker_image:
+        name: your-node-service-3
+        source: pull
+        tag: latest
+
+    - name: Run items service
+      docker_container:
+        name: node_service_3
+        image: your-node-service-3:latest #Change with the actuall docker image
+        ports:
+          - "3003:3003"
+        state: started

@@ -6,13 +6,7 @@ resource "aws_instance" "public_ec2_haproxy" {
   vpc_security_group_ids      = [aws_security_group.public_security_group.id]
   subnet_id                   = aws_subnet.subnet["public_subnet"].id
   associate_public_ip_address = true
-  user_data                   = <<-EOF
-        #!/bin/bash
-        sudo apt update -y
-        sudo apt install nginx -y
-        sudo systemctl start nginx
-        sudo systemctl enable nginx
-        EOF
+  
 
 
   tags = {
@@ -28,13 +22,7 @@ resource "aws_instance" "private_ec2_client" {
   availability_zone      = "eu-west-1b"
   vpc_security_group_ids = [aws_security_group.private_security_group.id]
   subnet_id              = aws_subnet.subnet["private_subnet"].id
-  user_data              = <<-EOF
-        #!/bin/bash
-        sudo apt update -y
-        sudo apt install nginx -y
-        sudo systemctl start nginx
-        sudo systemctl enable nginx
-        EOF
+  
 
 
   tags = {
@@ -49,13 +37,7 @@ resource "aws_instance" "private_ec2_items" {
   availability_zone      = "eu-west-1b"
   vpc_security_group_ids = [aws_security_group.private_security_group.id]
   subnet_id              = aws_subnet.subnet["private_subnet"].id
-  user_data              = <<-EOF
-        #!/bin/bash
-        sudo apt update -y
-        sudo apt install nginx -y
-        sudo systemctl start nginx
-        sudo systemctl enable nginx
-        EOF
+  
 
 
   tags = {
@@ -70,13 +52,7 @@ resource "aws_instance" "private_ec2_discounts" {
   availability_zone      = "eu-west-1b"
   vpc_security_group_ids = [aws_security_group.private_security_group.id]
   subnet_id              = aws_subnet.subnet["private_subnet"].id
-  user_data              = <<-EOF
-        #!/bin/bash
-        sudo apt update -y
-        sudo apt install nginx -y
-        sudo systemctl start nginx
-        sudo systemctl enable nginx
-        EOF
+  
 
 
   tags = {
@@ -91,13 +67,7 @@ resource "aws_instance" "private_ec2_auth" {
   availability_zone      = "eu-west-1b"
   vpc_security_group_ids = [aws_security_group.private_security_group.id]
   subnet_id              = aws_subnet.subnet["private_subnet"].id
-  user_data              = <<-EOF
-        #!/bin/bash
-        sudo apt update -y
-        sudo apt install nginx -y
-        sudo systemctl start nginx
-        sudo systemctl enable nginx
-        EOF
+  
 
 
   tags = {
