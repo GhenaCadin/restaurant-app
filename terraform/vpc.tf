@@ -1,4 +1,4 @@
-resource "aws_vpc" "myVpc" {
+resource "aws_vpc" "restaurant_vpc" {
   cidr_block       = var.cidr_block
   instance_tenancy = "default"
   tags = {
@@ -11,7 +11,7 @@ resource "aws_nat_gateway" "nat_gw" {
   subnet_id     = aws_subnet.subnet["public_subnet"].id
 
   tags = {
-    Name = "nat_goddess"
+    Name = "nat_restaurant"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_eip" "nat_eip" {
   domain = "vpc"
 
   tags = {
-    Name = "nat_goddess_eip"
+    Name = "nat_restaurant_eip"
   }
 }
 

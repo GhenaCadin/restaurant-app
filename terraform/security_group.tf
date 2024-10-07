@@ -1,7 +1,7 @@
 resource "aws_security_group" "public_security_group" {
   name        = "allow_public_traffic"
   description = "Allow traffic on public VM"
-  vpc_id      = aws_vpc.myVpc.id
+  vpc_id      = aws_vpc.restaurant_vpc.id
 
 
   ingress {
@@ -37,7 +37,7 @@ resource "aws_security_group" "public_security_group" {
 resource "aws_security_group" "private_security_group" {
   name        = "allow_private_traffic"
   description = "Allow traffic on private VM"
-  vpc_id      = aws_vpc.myVpc.id
+  vpc_id      = aws_vpc.restaurant_vpc.id
 
 
   ingress {
@@ -67,7 +67,7 @@ resource "aws_security_group" "private_security_group" {
 resource "aws_security_group" "allow_different_traffic" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.myVpc.id
+  vpc_id      = aws_vpc.restaurant_vpc.id
 
   dynamic "ingress" {
 
