@@ -1,0 +1,14 @@
+[haproxy]
+12.12.12.12
+
+[frontend]
+12.12.12.12
+
+[services]
+12.12.12.12
+12.12.12.12
+12.12.12.12
+
+
+web1 ansible_host=54.155.237.95 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Desktop/ansible-playbooks/ansible_server_key.pem
+web2 ansible_host=34.244.64.174 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Desktop/ansible-playbooks/ansible_server_key.pem
