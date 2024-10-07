@@ -1,7 +1,7 @@
 resource "aws_instance" "public_ec2_haproxy" {
   ami                         = var.ami_image
   instance_type               = var.instance_type
-  key_name                    = "Key_for_EU_West_1"
+  key_name                    = "restaurant-key"
   availability_zone           = "eu-west-1a"
   vpc_security_group_ids      = [aws_security_group.public_security_group.id]
   subnet_id                   = aws_subnet.subnet["public_subnet"].id
@@ -25,7 +25,7 @@ resource "aws_instance" "public_ec2_haproxy" {
 resource "aws_instance" "private_ec2_frontend" {
   ami                         = var.ami_image
   instance_type               = var.instance_type
-  key_name                    = "Key_for_EU_West_1"
+  key_name                    = "restaurant-key"
   availability_zone           = "eu-west-1b"
   vpc_security_group_ids      = [aws_security_group.private_security_group.id]
   subnet_id                   = aws_subnet.subnet["private_subnet"].id
@@ -47,7 +47,7 @@ resource "aws_instance" "private_ec2_frontend" {
 resource "aws_instance" "private_ec2_items" {
   ami                         = var.ami_image
   instance_type               = var.instance_type
-  key_name                    = "Key_for_EU_West_1"
+  key_name                    = "restaurant-key"
   availability_zone           = "eu-west-1b"
   vpc_security_group_ids      = [aws_security_group.private_security_group.id]
   subnet_id                   = aws_subnet.subnet["private_subnet"].id
@@ -69,7 +69,7 @@ resource "aws_instance" "private_ec2_items" {
 resource "aws_instance" "private_ec2_discounts" {
   ami                         = var.ami_image
   instance_type               = var.instance_type
-  key_name                    = "Key_for_EU_West_1"
+  key_name                    = "restaurant-key"
   availability_zone           = "eu-west-1b"
   vpc_security_group_ids      = [aws_security_group.private_security_group.id]
   subnet_id                   = aws_subnet.subnet["private_subnet"].id
@@ -91,7 +91,7 @@ resource "aws_instance" "private_ec2_discounts" {
 resource "aws_instance" "private_ec2_auth" {
   ami                         = var.ami_image
   instance_type               = var.instance_type
-  key_name                    = "Key_for_EU_West_1"
+  key_name                    = "restaurant-key"
   availability_zone           = "eu-west-1b"
   vpc_security_group_ids      = [aws_security_group.private_security_group.id]
   subnet_id                   = aws_subnet.subnet["private_subnet"].id
