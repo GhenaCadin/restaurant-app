@@ -1,10 +1,10 @@
 [haproxy]
-haproxy ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
+haproxy ansible_host=3.253.22.39 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Downloads/restaurant-key.pem
 
 [client]
-client ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
+client ansible_host=10.0.2.121 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Downloads/restaurant-key.pem
 
 [backend]
-backend_items ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
-backend_discount ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
-backend_auth ansible_host=12.12.12.12 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/wallytouko/restaurant-key.pem
+backend_items ansible_host=10.0.2.86 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Downloads/restaurant-key.pem
+backend_discount ansible_host=10.0.2.60 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Downloads/restaurant-key.pem
+backend_auth ansible_host=10.0.2.233 ansible_user=ubuntu ansible_ssh_private_key_file=/Users/ghenadie/Downloads/restaurant-key.pem

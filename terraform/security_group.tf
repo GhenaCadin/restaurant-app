@@ -1,11 +1,11 @@
 resource "aws_security_group" "public_security_group" {
-  name        = "allow_public_traffic"
+  name        = "public_security_group"
   description = "Allow traffic on public VM"
   vpc_id      = aws_vpc.restaurant_vpc.id
 
 
   ingress {
-    description = "TLS from Internet"
+    description = "SSH connection"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -13,7 +13,7 @@ resource "aws_security_group" "public_security_group" {
   }
 
   ingress {
-    description = "Http from Internet"
+    description = "Http connection"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -30,12 +30,12 @@ resource "aws_security_group" "public_security_group" {
 
 
   tags = {
-    Name = "allow_public_traffic"
+    Name = "public_security_group"
   }
 }
 
 resource "aws_security_group" "private_security_group" {
-  name        = "allow_private_traffic"
+  name        = "private security group"
   description = "Allow traffic on private VM"
   vpc_id      = aws_vpc.restaurant_vpc.id
 
@@ -60,7 +60,7 @@ resource "aws_security_group" "private_security_group" {
 
 
   tags = {
-    Name = "allow_private_traffic"
+    Name = "private_security_group"
   }
 }
 

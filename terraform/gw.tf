@@ -1,7 +1,7 @@
-resource "aws_internet_gateway" "restaurant_gateway" {
+resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.restaurant_vpc.id
   tags = {
-    Name = "restaurant_gateway"
+    Name = "gw"
   }
 }
 

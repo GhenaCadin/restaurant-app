@@ -1,6 +1,6 @@
 # Service Client
 services:
-  frontend:
+  client:
     build: ./client
     ports:
       - "6002:6002"

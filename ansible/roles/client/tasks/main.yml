@@ -10,8 +10,8 @@
 
     - name: Run client service on port 6002
       docker_container:
-        name: backend-auth
-        image: your-node-service-1:latest #Change with the actuall docker image
+        name: client
+        image: ghenac/client:latest #Change with the actuall docker image
         ports:
           - "6002:6002"
         state: started
