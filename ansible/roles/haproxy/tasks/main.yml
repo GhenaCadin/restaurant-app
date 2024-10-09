@@ -1,12 +1,17 @@
 ---
-- hosts: haproxy
-  become: true
-  tasks:
+# - hosts: haproxy
+#   become: true
+#   tasks:
+    - name: update_cache
+      apt:
+        update_cache: yes
+
     - name: Pull haproxy Docker image 
       docker_image:
-        name: haproxy
+        name: ghenac/haproxy  # might not need this image at all (check if get error after running)
         source: pull
         tag: latest
+      when: inventory_hostname == 'haproxy'  
 
     - name: Run haproxy service on port 80
       docker_container:
@@ -14,4 +19,10 @@
         image: ghenac/haproxy:latest #Change with the actuall docker image
         ports:
           - "80:80"
-        state: started   
+        state: started
+      when: inventory_hostname == 'haproxy'  
+
+    # - name: restart haproxy
+    #   service:
+    #     name: haproxy
+    #     state: restarted 

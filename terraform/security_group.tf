@@ -41,7 +41,7 @@ resource "aws_security_group" "private_security_group" {
 
 
   ingress {
-    description = "TLS from Internet"
+    description = "SSH from Internet"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"

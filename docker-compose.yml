@@ -3,13 +3,13 @@ services:
   client:
     build: ./client
     ports:
-      - "6002:6002"
+      - "80:80"
     networks:
       - client
     environment:
       - NODE_ENV=production  
 
-# Services Backend
+  # Services Backend
   backend_auth:
     build: ./backend/auth
     ports:
@@ -37,7 +37,7 @@ services:
     environment:
       - NODE_ENV=production      
 
-# HAProxy 
+  # HAProxy 
   haproxy:
     image: haproxy:latest
     volumes:
@@ -52,5 +52,7 @@ services:
 networks:
   client: {}
   backend: {}
+
+
 
   

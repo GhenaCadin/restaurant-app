@@ -1,17 +1,25 @@
 ---
-- hosts: client
-  become: true
-  tasks:
+# - hosts: client
+#   become: true
+#   tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
     - name: Pull client Docker image
       docker_image:
-        name: client
+        name: ghenac/client
         source: pull
         tag: latest
+      when: inventory_hostname == 'client'  
 
-    - name: Run client service on port 6002
+    - name: Run client service on port 80
       docker_container:
         name: client
         image: ghenac/client:latest #Change with the actuall docker image
         ports:
-          - "6002:6002"
+          - "80:80"
         state: started
+      when: inventory_hostname == 'client'  

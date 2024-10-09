@@ -1,0 +1,61 @@
+---
+# Upload key.pem file to HAProxy server
+- name: Upload SSL key and set permissions on HAProxy server
+  hosts: bastion
+  become: yes  # Ensures the task is run with elevated privileges (if needed)
+  tasks:
+    - name: Create a directory on each private server
+      file:
+        path: /etc/haproxy
+        state: directory
+        mode: '0755'  # Set file permissions (read/write for the owner only)
+
+    - name: Upload restaurant-key to HAProxy server
+      ansible.builtin.copy:
+        src: /Users/ghenadie/Downloads/restaurant-key.pem  # Local path to the key file
+        dest: /home/ubuntu/restaurant-key.pem  # Destination path on the HAProxy server
+        owner: ubuntu  # Set the owner of the file to ubuntu user
+        group: ubuntu  # Set the group of the file to ubuntu user
+        mode: '0400'  # Permissions for the key file
+
+    - name: Ensure correct permissions for restaurant-key 
+      ansible.builtin.file:
+        path: /home/ubuntu/restaurant-key.pem  # Path of the key file on the server
+        mode: '0400'  # Permissions: rw------- (only owner has read access)
+        owner: ubuntu  # Ensure it's owned by the ubuntu user
+        group: ubuntu  # Ensure it's in the ubuntu group  
+
+- name: Test SSH connection through bastion to private servers
+  hosts: backend
+  gather_facts: no
+  tasks:
+    - name: Ping private server
+      ping:
+
+    - name: Check connectivity to private server
+      command: echo "Connection to {{ inventory_hostname }} successful"
+
+- name: Test SSH connection through bastion to private servers
+  hosts: client
+  gather_facts: no
+  tasks:
+    - name: Ping private server
+      ping:
+
+    - name: Check connectivity to private server
+      command: echo "Connection to {{ inventory_hostname }} successful"      
+
+
+# # CHAT - Test connection from HAProxy to private servers
+# - name: Run commands on private servers via bastion
+#   hosts: webservers
+#   gather_facts: no
+#   tasks:
+#     - name: Test connection to private server
+#       ping:
+
+#     - name: Create a directory on each private server
+#       file:
+#         path: /home/ubuntu/test_directory
+#         state: directory
+#         mode: '0755'        

@@ -1,12 +1,19 @@
 ---
-- hosts: backend
-  become: true
-  tasks:
+# - hosts: backend
+#   become: true
+#   tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
     - name: Pull Docker image for auth
       docker_image:
-        name: backend-auth
+        name: ghenac/backend-auth
         source: pull
         tag: latest
+      when: inventory_hostname == 'backend_auth'
 
     - name: Run auth service
       docker_container:
@@ -15,13 +22,14 @@
         ports:
           - "3001:3001"
         state: started
+      when: inventory_hostname == 'backend_auth'
 
     - name: Pull Docker image for discounts
       docker_image:
-        name: backend-discounts
+        name: ghenac/backend-discounts
         source: pull
         tag: latest
-
+      when: inventory_hostname == 'backend_discounts'
     - name: Run discounts service
       docker_container:
         name: backend-discounts
@@ -29,12 +37,15 @@
         ports:
           - "3002:3002"
         state: started
+      when: inventory_hostname == 'backend_discounts'
+      
 
     - name: Pull Docker image for items
       docker_image:
-        name: backend-items
+        name: ghenac/backend-items
         source: pull
         tag: latest
+      when: inventory_hostname == 'backend_items'
 
     - name: Run items service
       docker_container:
@@ -43,3 +54,4 @@
         ports:
           - "3003:3003"
         state: started
+      when: inventory_hostname == 'backend_items'
