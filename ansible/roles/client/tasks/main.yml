@@ -15,11 +15,11 @@
         tag: latest
       when: inventory_hostname == 'client'  
 
-    - name: Run client service on port 80
+    - name: Run client service
       docker_container:
         name: client
         image: ghenac/client:latest #Change with the actuall docker image
         ports:
-          - "80:80"
+          - "80:80" # you connect the port 80 of your EC2 instance to the port 80 of your container
         state: started
       when: inventory_hostname == 'client'  

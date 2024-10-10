@@ -2,25 +2,47 @@
 # - hosts: haproxy
 #   become: true
 #   tasks:
+    # - name: update_cache
+    #   apt:
+    #     update_cache: yes
+
+    # - name: Pull haproxy Docker image 
+    #   docker_image:
+    #     name: ghenac/haproxy  # might not need this image at all (check if get error after running)
+    #     source: pull
+    #     tag: latest
+    #   when: inventory_hostname == 'haproxy'
+      
     - name: update_cache
       apt:
         update_cache: yes
 
-    - name: Pull haproxy Docker image 
-      docker_image:
-        name: ghenac/haproxy  # might not need this image at all (check if get error after running)
-        source: pull
-        tag: latest
-      when: inventory_hostname == 'haproxy'  
-
-    - name: Run haproxy service on port 80
-      docker_container:
+    - name: Install haproxy
+      apt:
         name: haproxy
-        image: ghenac/haproxy:latest #Change with the actuall docker image
-        ports:
-          - "80:80"
-        state: started
-      when: inventory_hostname == 'haproxy'  
+        state: present
+
+    - name: copy haproxy.cfg 
+      template:
+        src: ../templates/haproxy.cfg.j2   #try putting the whole correct path
+        dest: /etc/haproxy/haproxy.cfg
+
+    - name: Restart haproxy
+      ansible.builtin.systemd:
+        name: haproxy
+        state: restarted
+
+
+    # - name: restart haproxy
+    #   service:
+    #     name: haproxy
+    #     state: restarted 
+
+    # - name: Run haproxy service on port 80
+    #   ports:
+    #     - "80:80"
+    #   state: started
+      
 
     # - name: restart haproxy
     #   service:

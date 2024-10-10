@@ -1,5 +1,5 @@
 # Step 1: Build the React app
-FROM node:22-alpine AS build
+FROM node:22 AS build
 
 # Set the working directory inside the container to the 'client' folder
 WORKDIR /client
@@ -17,13 +17,13 @@ COPY . .
 RUN npm run build
 
 # Step 2: Serve the app using Nginx
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 # Copy the built files from the previous step to the Nginx public folder
 COPY --from=build /client/build /usr/share/nginx/html
 
 # Expose port 80 to access the application
-EXPOSE 80:80
+EXPOSE 80
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
