@@ -1,8 +1,8 @@
-region = "eu-west-1"
+region = "eu-west-3"
 
 availability_zone = {
-  private_subnet_az = "eu-west-1b"
-  public_subnet_az  = "eu-west-1a"
+  private_subnet_az = "eu-west-3b"
+  public_subnet_az  = "eu-west-3a"
 }
 
 cidr_block = "10.0.0.0/16"
@@ -13,7 +13,7 @@ public_subnet_cidr_block = "10.0.1.0/24"
 
 private_subnet_cidr_block = "10.0.2.0/24"
 
-ami_image = "ami-0d64bb532e0502c46"
+ami_image = "ami-045a8ab02aadf4f88"
 
 instance_type = "t2.micro"
 
@@ -21,13 +21,13 @@ subnets = {
   public_subnet = {
     cidr_block              = "10.0.1.0/24"
     map_public_ip_on_launch = true
-    availability_zone       = "eu-west-1a"
+    availability_zone       = "eu-west-3a"
   }
 
   private_subnet = {
     cidr_block              = "10.0.2.0/24"
     map_public_ip_on_launch = false
-    availability_zone       = "eu-west-1b"
+    availability_zone       = "eu-west-3b"
   }
 }
 

@@ -46,7 +46,7 @@ variable "region" {
 
   type = string
 
-  default = "eu-west-1"
+  default = "eu-west-3"
 
   description = "default region where infrastructures will be provisioned"
 }
@@ -56,8 +56,8 @@ variable "availability_zone" {
   type = map(string)
 
   default = {
-    private_subnet_az = "eu-west-1b"
-    public_subnet_az  = "eu-west-1a"
+    private_subnet_az = "eu-west-3b"
+    public_subnet_az  = "eu-west-3a"
   }
 
 }

@@ -10,15 +10,15 @@
 
     - name: Pull Docker image for auth
       docker_image:
-        name: ghenac/backend-auth
+        name: pablop115/auth
         source: pull
         tag: latest
       when: inventory_hostname == 'backend_auth'
 
     - name: Run auth service
       docker_container:
-        name: backend-auth
-        image: ghenac/backend-auth:latest #Changed with the actuall docker image
+        name: auth
+        image: pablop115/auth:latest #Changed with the actuall docker image
         ports:
           - "3001:3001"
         state: started
@@ -26,14 +26,14 @@
 
     - name: Pull Docker image for discounts
       docker_image:
-        name: ghenac/backend-discounts
+        name: pablop115/discounts
         source: pull
         tag: latest
       when: inventory_hostname == 'backend_discounts'
     - name: Run discounts service
       docker_container:
-        name: backend-discounts
-        image: ghenac/backend-discounts:latest #Changed with the actuall docker image
+        name: discounts
+        image: pablop115/discounts:latest #Changed with the actuall docker image
         ports:
           - "3002:3002"
         state: started
@@ -42,15 +42,15 @@
 
     - name: Pull Docker image for items
       docker_image:
-        name: ghenac/backend-items
+        name: pablop115/items
         source: pull
         tag: latest
       when: inventory_hostname == 'backend_items'
 
     - name: Run items service
       docker_container:
-        name: backend-items
-        image: ghenac/backend-items:latest #Changed with the actuall docker image
+        name: items
+        image: pablop115/items:latest #Changed with the actuall docker image
         ports:
           - "3003:3003"
         state: started

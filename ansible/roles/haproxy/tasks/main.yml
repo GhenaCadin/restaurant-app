@@ -1,18 +1,7 @@
 ---
 # - hosts: haproxy
 #   become: true
-#   tasks:
-    # - name: update_cache
-    #   apt:
-    #     update_cache: yes
-
-    # - name: Pull haproxy Docker image 
-    #   docker_image:
-    #     name: ghenac/haproxy  # might not need this image at all (check if get error after running)
-    #     source: pull
-    #     tag: latest
-    #   when: inventory_hostname == 'haproxy'
-      
+#   tasks:     
     - name: update_cache
       apt:
         update_cache: yes
@@ -31,20 +20,3 @@
       ansible.builtin.systemd:
         name: haproxy
         state: restarted
-
-
-    # - name: restart haproxy
-    #   service:
-    #     name: haproxy
-    #     state: restarted 
-
-    # - name: Run haproxy service on port 80
-    #   ports:
-    #     - "80:80"
-    #   state: started
-      
-
-    # - name: restart haproxy
-    #   service:
-    #     name: haproxy
-    #     state: restarted 

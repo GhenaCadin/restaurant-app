@@ -3,7 +3,7 @@ services:
   client:
     build: ./client
     ports:
-      - "80:80"
+      - "8081:80"
     networks:
       - client
     environment:
@@ -43,7 +43,7 @@ services:
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
-      - "80:80"
+      - "8080:80"
     networks:
       - client
       - backend
